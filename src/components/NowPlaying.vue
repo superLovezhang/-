@@ -40,7 +40,7 @@ export default {
             // http://api.mtnhao.com/playlist/detail?id=19723756
             let id = this.$route.params.id;
             if(!id){
-                this.axios.get('/top/list?idx=1')
+                this.axios.get('http://api.mtnhao.com/top/list?idx=1')
                     .then((res)=>{
                         if(res.status == 200 && res.statusText === 'OK'){
                         let result = res.data.playlist.tracks
@@ -75,7 +75,6 @@ export default {
             }
 
             let newArr = [];
-            console.log(typeof window.localStorage.getItem('Listened'))
             // 如果点击歌曲与上一次相同，不同则将该歌曲放入本地缓存，并且让
             // 进度条为0和更新父组件数据
             if(this.$store.state.musicIndex != index){

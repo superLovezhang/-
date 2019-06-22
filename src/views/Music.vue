@@ -157,14 +157,30 @@ export default {
         window.clearInterval(this.$store.state.timer);
         this.$store.state.timer = setInterval(() => {
           if (this.$refs.musicItem.ended) {
+            let index = ++this.index;
             this.$refs.musicItem.src =
               "https://music.163.com/song/media/outer/url?id=" +
-              this.$store.state.resdata[++this.index].id +
+              this.$store.state.resdata[index].id +
               ".mp3";
-            this.$store.commit(
-              "changeUrl",
-              this.$store.state.resdata[this.index].al.picUrl+ "?param=300y300"
-            );
+            
+            this.axios.get('http://api.mtnhao.com/song/detail?ids=' + this.$store.state.resdata[index].id)
+                .then((res)=>{
+                    this.$store.state.resdata[index].ar = [];
+                    this.$store.state.resdata[index].ar[0] = {};
+                    this.$store.state.resdata[index].ar[0].name = res.data.songs[0].ar[0].name;
+                    
+                    this.$store.state.resdata[index].al = {};
+                    this.$store.state.resdata[index].al.picUrl = res.data.songs[0].al.picUrl;
+                    this.$store.commit("changeUrl", res.data.songs[0].al.picUrl + "?param=300y300");
+                })
+                .catch((err)=>{
+                console.log(err+'未能成功获取数据')
+                })
+
+            // this.$store.commit(
+            //   "changeUrl",
+            //   this.$store.state.resdata[this.index].al.picUrl+ "?param=300y300"
+            // );
             this.$refs.musicItem.play();
             this.LineWidth = 0;
             this.$options.methods.toggleIcon.bind(this)();
