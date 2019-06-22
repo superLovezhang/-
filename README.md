@@ -1,3 +1,5 @@
-# 1.克隆到本地仓储，使用命令npm run serve即可开启本地服务
-## 2.该网页使用到vue全家桶,vue-lazyod插件
-### 3.打开网页电脑用户请按F12切换到手机模拟器状态
+
+# 鏈暀绋嬪湪绾挎祻瑙堝湴鍧�锛歨ttp://47.100.118.229/webmusic/Music/NowPlaying
+# 1.鍏嬮殕鍒版湰鍦颁粨鍌紝浣跨敤鍛戒护npm run serve鍗冲彲寮�鍚湰鍦版湇鍔?
+# 2.璇ョ綉椤典娇鐢ㄥ埌vue鍏ㄥ妗?vue-lazyod鎻掍欢
+
